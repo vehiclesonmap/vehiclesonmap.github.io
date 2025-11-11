@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicles OnMap - Building Smarter Fleets Together</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #f39c12;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #c0392b;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        /* Architecture */
+        .architecture {
+            background: #f8f9fa;
+        }
+
+        .tech-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tech-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Industries */
+        .industries {
+            text-align: center;
+        }
+
+        .industry-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .industry-item {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            min-width: 200px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #f39c12;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Vehicles OnMap</div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#architecture">Architecture</a></li>
+                    <li><a href="#industries">Industries</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Building Smarter Fleets Together</h1>
+            <p>Intelligent Fleet Visibility, Powered by Data</p>
+            <a href="#contact" class="cta-button">Book a Demo</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Professional Journey</h2>
+                <p>Next-generation tracking technology that transforms vehicle data into strategic business insights</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Real-time GPS + Sensor Fusion</h3>
+                    <p>Converts raw tracking data into actionable intelligence for informed decision-making</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>User-Friendly Dashboards</h3>
+                    <p>Intuitive interfaces designed for fleet managers, operations teams, and executives</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Modular & Layers Architecture</h3>
+                    <p>Scalable, modular design that allows for flexible deployment and maintenance</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Seamless API Integration</h3>
+                    <p>RESTful APIs for smooth integration with ERP/TMS/CRM systems</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Enterprise-Grade Security</h3>
+                    <p>Comprehensive security measures including JWT authentication, RBAC, and end-to-end encryption</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technical Architecture</h2>
+                <p>Scalable, Secure & Future-Ready Architecture</p>
+            </div>
+            
+            <div class="tech-features">
+                <div class="tech-item">
+                    <h3>Enterprise Security</h3>
+                    <p>JWT Authentication & Role-Based Access Control</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h3>Real-time Location</h3>
+                    <p>GPS to Google Map Displaying with live tracking</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h3>Real-time Communication</h3>
+                    <p>Backend & Frontend Socket.io for instant notifications</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h3>Comprehensive Control</h3>
+                    <p>Complete fleet management at your fingertips</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section id="industries" class="industries">
+        <div class="container">
+            <div class="section-title">
+                <h2>Real-World Impact Across Industries</h2>
+                <p>Our solutions deliver value across multiple sectors</p>
+            </div>
+            
+            <div class="industry-list">
+                <div class="industry-item">Logistics & Transportation</div>
+                <div class="industry-item">Delivery Services</div>
+                <div class="industry-item">Public Transportation</div>
+                <div class="industry-item">Construction & Heavy Equipment</div>
+                <div class="industry-item">Emergency Services</div>
+                <div class="industry-item">Rental Fleets</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Let's Build Smarter Fleets Together</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.2rem;">
+                Our blend of telecom precision + financial-grade security ensures a robust solution that delivers real business value.
+            </p>
+            
+            <div style="max-width: 600px; margin: 0 auto; text-align: left; background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 10px;">
+                <h3 style="margin-bottom: 1rem;">Partnership Opportunities</h3>
+                <div style="margin-bottom: 1rem;">
+                    <strong>Tailored Pilot Program</strong> - Custom solution development for your specific fleet requirements
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <strong>Custom Integrations</strong> - Seamless connection with your existing systems and workflows
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <strong>Co-Development</strong> - Collaborative creation of industry-specific features
+                </div>
+                
+                <a href="mailto:fleetpro619@gmail.com" class="cta-button">Schedule a Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: <a href="mailto:fleetpro619@gmail.com" style="color: #f39c12;">fleetpro619@gmail.com</a></p>
+                    <p>Contact: Yahia Jad / Ashraf Raif</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Our Commitment</h3>
+                    <p>"Your fleet's intelligence starts here."</p>
+                    <p>Building smarter, more efficient fleets through innovative technology and data-driven insights.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 FleetTracking Solutions | All rights reserved.</p>
+                <p style="margin-top: 0.5rem; font-style: italic;">"Your fleet's intelligence starts here."</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(44, 62, 80, 0.95)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #2c3e50, #3498db)';
+            }
+        });
+    </script>
+</body>
+</html>
